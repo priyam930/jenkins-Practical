@@ -1,12 +1,13 @@
-FROM  redhat/ubi8
+FROM redhat/ubi8
 
-
-RUN yum install python39 -y
-
-EXPOSE 5000
+RUN yum install python36 -y
 
 RUN pip3 install flask
 
-COPY app.py  /app.py
+EXPOSE 5000
 
-ENTRYPOINT [ "python3", "/app.py" ]
+WORKDIR /mycode
+
+COPY app.py /mycode/app.py
+
+ENTRYPOINT ["python3", "/mycode/app.py"]
